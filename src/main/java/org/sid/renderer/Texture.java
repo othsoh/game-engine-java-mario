@@ -20,7 +20,6 @@ public class Texture {
         //Generate texture on GPU
         textureID = GL11.glGenTextures();
         GL11.glBindTexture(GL11.GL_TEXTURE_2D, textureID);
-
         //set texture params
 
         //repeat image
@@ -47,24 +46,24 @@ public class Texture {
             } else {
                 format = GL11.GL_RED;
             }
-
+            
             GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, format, width.get(0), height.get(0),
                     0, format, GL11.GL_UNSIGNED_BYTE, image);
-
-//            System.out.println("Loaded texture: " + filepath +
-//                               " (" + width.get(0) + "x" + height.get(0) +
-//                               ", " + channels.get(0) + " channels)");
+            
+            System.out.println("Loaded texture: " + filepath + 
+                               " (" + width.get(0) + "x" + height.get(0) + 
+                               ", " + channels.get(0) + " channels)");
         } else {
             assert false: "Error: Couldn't load Image " + filepath + " ~~~~ lvl: Texture";
         }
 
         STBImage.stbi_image_free(image);
-
     }
+    
     public void bind(){
         GL11.glBindTexture(GL11.GL_TEXTURE_2D, textureID);
-
     }
+    
     public void unbind(){
         GL11.glBindTexture(GL11.GL_TEXTURE_2D, 0);
     }

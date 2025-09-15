@@ -53,6 +53,9 @@ public class Window {
         }
         return Window.window;
     }
+    public static Scene getScene(){
+        return get().currentScene;
+    }
 
     public void run() {
 
@@ -145,7 +148,7 @@ public class Window {
             beginTime = endTime;
         }
 
-
     }
+
 
 }
