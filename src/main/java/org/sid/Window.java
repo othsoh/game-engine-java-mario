@@ -7,7 +7,6 @@ import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.system.MemoryUtil;
-import org.sid.utils.Time;
 
 public class Window {
 
@@ -123,7 +122,7 @@ public class Window {
 
     private void loop() {
 
-        float beginTime = Time.getTime();
+        float beginTime = (float) GLFW.glfwGetTime();
         float endTime = 0.0f;
         float dt = -1.0f;
 
@@ -143,7 +142,7 @@ public class Window {
             // Swap the buffers
             GLFW.glfwSwapBuffers(glfwWindow);
 
-            endTime = Time.getTime();
+            endTime = (float) GLFW.glfwGetTime();
             dt = endTime - beginTime;
             beginTime = endTime;
         }

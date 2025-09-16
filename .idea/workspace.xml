@@ -4,19 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fc8b585a-0218-44c2-8e33-b0ad07898669" name="Changes" comment="ECS">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/sid/Transform.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/sid/renderer/RenderBatch.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/sid/renderer/Renderer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/sid/utils/AssetPool.java" afterDir="false" />
+    <list default="true" id="fc8b585a-0218-44c2-8e33-b0ad07898669" name="Changes" comment="resource management using AssetPool">
+      <change afterPath="$PROJECT_DIR$/assets/images/testImage.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/images/testImage2.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/shaders/default.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/assets/shaders/default.glsl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/GameObject.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/LevelEditorScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/LevelEditorScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/Scene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/Scene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/Transform.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/Transform.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/Window.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/components/SpriteRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/components/SpriteRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/renderer/Texture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/renderer/Texture.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/renderer/RenderBatch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/renderer/RenderBatch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/renderer/Renderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/renderer/Renderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/renderer/Shader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/renderer/Shader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/utils/Time.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +37,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/main/java/org/sid/Window.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -81,13 +84,16 @@
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.completion&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\game-dev\tutorial\mario-tuto-yt\Assets\images" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\game-dev\tutorial\mario-tuto-yt\assets\images" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
@@ -164,7 +170,13 @@
       <workItem from="1748938920165" duration="597000" />
       <workItem from="1757540138215" duration="5557000" />
       <workItem from="1757589692983" duration="7479000" />
-      <workItem from="1757953981725" duration="2850000" />
+      <workItem from="1757953981725" duration="2975000" />
+      <workItem from="1757957331431" duration="57000" />
+      <workItem from="1757959742955" duration="1110000" />
+      <workItem from="1757961558985" duration="3059000" />
+      <workItem from="1758019060260" duration="1920000" />
+      <workItem from="1758022477914" duration="1483000" />
+      <workItem from="1758023987697" duration="346000" />
     </task>
     <task id="LOCAL-00001" summary="ECS">
       <option name="closed" value="true" />
@@ -174,7 +186,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748776660029</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="resource management using AssetPool">
+      <option name="closed" value="true" />
+      <created>1757957211185</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1757957211185</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -182,7 +202,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="ECS" />
-    <option name="LAST_COMMIT_MESSAGE" value="ECS" />
+    <MESSAGE value="resource management using AssetPool" />
+    <option name="LAST_COMMIT_MESSAGE" value="resource management using AssetPool" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

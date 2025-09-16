@@ -4,8 +4,8 @@ import org.joml.Vector2f;
 
 public class Transform {
 
-    private Vector2f position;
-    private Vector2f scale;
+    public Vector2f position;
+    public Vector2f scale;
 
     public Transform() {
         init(new Vector2f(), new Vector2f());
