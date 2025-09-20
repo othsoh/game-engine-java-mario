@@ -3,58 +3,70 @@ package org.sid.components;
 import org.joml.Vector2f;
 import org.joml.Vector4f;
 import org.sid.Component;
+import org.sid.Transform;
+import org.sid.components.Sprite;
 import org.sid.renderer.Texture;
 
 public class SpriteRenderer extends Component {
 
     private Vector4f color;
+    private Sprite sprite;
 
-    private Texture texture;
+    private Transform lastTransform;
+    private boolean isDirty = false;
 
-    private Vector2f[] textureCoords;
-
-    public SpriteRenderer(){
-        init(new Vector4f());
-    }
-
-    public SpriteRenderer(Vector4f color){
-        init(color);
-        this.texture = null;
-    }
-    public SpriteRenderer(Texture texture){
-        init(texture);
-        this.color = new Vector4f(1,1,1,1);
-    }
-    private void  init(Vector4f color){
+    public SpriteRenderer(Vector4f color) {
         this.color = color;
+        this.sprite = new Sprite(null);
     }
-    private void  init(Texture texture){
-        this.texture = texture;
+
+    public SpriteRenderer(Sprite sprite) {
+        this.sprite = sprite;
+        this.color = new Vector4f(1, 1, 1, 1);
     }
+
     @Override
     public void start() {
+        this.lastTransform = gameObject.transform.copy();
     }
 
     @Override
     public void update(float dt) {
-
+        if (!this.lastTransform.equals(this.gameObject.transform)) {
+            this.gameObject.transform.copy(this.lastTransform);
+            isDirty = true;
+        }
     }
 
     public Vector4f getColor() {
         return this.color;
     }
 
-    public Vector2f[] getTextureCoords() {
-        Vector2f[] textCoords = new Vector2f[]{
-                new Vector2f(1, 1),
-                new Vector2f(1, 0),
-                new Vector2f(0, 0),
-                new Vector2f(0, 1)
-        };
-        return textCoords;
+    public Texture getTexture() {
+        return sprite.getTexture();
     }
 
-    public Texture getTexture() {
-        return this.texture;
+    public Vector2f[] getTexCoords() {
+        return sprite.getTexCoords();
+    }
+
+    public void setSprite(Sprite sprite) {
+        this.sprite = sprite;
+        this.isDirty = true;
+    }
+
+    public void setColor(Vector4f color) {
+        if (!this.color.equals(color)) {
+            this.isDirty = true;
+            this.color.set(color);
+        }
+    }
+
+    public boolean isDirty() {
+        return this.isDirty;
+    }
+
+    public void setClean() {
+        this.isDirty = false;
     }
 }

@@ -3,6 +3,7 @@ package org.sid.renderer;
 import org.sid.GameObject;
 import org.sid.components.SpriteRenderer;
 import org.sid.renderer.RenderBatch;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,9 +27,13 @@ public class Renderer {
         boolean added = false;
         for (RenderBatch batch : batches) {
             if (batch.hasRoom()) {
-                batch.addSprite(sprite);
-                added = true;
-                break;
+                Texture tex = sprite.getTexture();
+                if(tex == null || batch.hasTexRoom() || batch.hasTexture(tex)){
+                    batch.addSprite(sprite);
+                    added = true;
+                    break;
+                }
+
             }
         }
 

@@ -7,6 +7,7 @@ import org.sid.components.SpriteRenderer;
 import org.sid.renderer.Shader;
 import org.sid.renderer.Texture;
 import org.sid.utils.AssetPool;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +28,8 @@ public class RenderBatch {
     private final int COLOR_SIZE = 4;
     private final int TEX_COORDS_SIZE = 2;
     private final int TEX_ID_SIZE = 1;
+
+    private final int MAX_TEXTURE_PER_BATCH = 8;
 
     private final int POS_OFFSET = 0;
     private final int COLOR_OFFSET = POS_OFFSET + POS_SIZE * Float.BYTES;
@@ -110,9 +113,22 @@ public class RenderBatch {
     }
 
     public void render() {
-        // For now, we will rebuffer all data every frame
-        glBindBuffer(GL_ARRAY_BUFFER, vboID);
-        glBufferSubData(GL_ARRAY_BUFFER, 0, vertices);
+        boolean rebufferData = false;
+        for (int i = 0; i < numSprites; i++){
+            SpriteRenderer sprite = sprites[i];
+            if(sprite.isDirty()){
+                loadVertexProperties(i);
+                sprite.setClean();
+                rebufferData = true;
+                break;
+            }
+        }
+        if (rebufferData){
+
+            //only rebuffer when something changed
+            glBindBuffer(GL_ARRAY_BUFFER, vboID);
+            glBufferSubData(GL_ARRAY_BUFFER, 0, vertices);
+        }
 
         // Use shader
         shader.use();
@@ -138,6 +154,7 @@ public class RenderBatch {
             textures.get(i).unbind();
         }
         shader.detach();
+
     }
 
     private void loadVertexProperties(int index) {
@@ -147,7 +164,7 @@ public class RenderBatch {
         int offset = index * 4 * VERTEX_SIZE;
 
         Vector4f color = sprite.getColor();
-        Vector2f[] texCoords = sprite.getTextureCoords();
+        Vector2f[] texCoords = sprite.getTexCoords();
 
         int texId = 0;
         if (sprite.getTexture() != null) {
@@ -220,5 +237,13 @@ public class RenderBatch {
 
     public boolean hasRoom() {
         return this.hasRoom;
+    }
+
+    public boolean hasTexRoom(){
+        return this.textures.size() < MAX_TEXTURE_PER_BATCH;
+    }
+
+    public boolean hasTexture(Texture texture){
+        return this.textures.contains(texture);
     }
 }

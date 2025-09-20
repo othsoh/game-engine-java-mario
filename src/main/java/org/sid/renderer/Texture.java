@@ -13,6 +13,8 @@ public class Texture {
 
     private String filepath;
     private int textureID;
+    private int width, height ;
+
 
     public Texture(String filepath) {
         this.filepath = filepath;
@@ -38,6 +40,8 @@ public class Texture {
         ByteBuffer image = STBImage.stbi_load(filepath, width, height, channels, 0);
 
         if (image != null) {
+            this.width = width.get(0);
+            this.height = height.get(0);
             int format;
             if (channels.get(0) == 4) {
                 format = GL11.GL_RGBA;
@@ -66,5 +70,13 @@ public class Texture {
     
     public void unbind(){
         GL11.glBindTexture(GL11.GL_TEXTURE_2D, 0);
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getWidth() {
+        return width;
     }
 }

@@ -24,20 +24,21 @@ public class Transform {
         this.scale = scale;
     }
 
-
-    public Vector2f getPosition() {
-        return position;
+    public Transform copy() {
+        return new Transform(new Vector2f(this.position), new Vector2f(this.scale));
     }
 
-    public void setPosition(Vector2f position) {
-        this.position = position;
+    public void copy(Transform to) {
+        to.position.set(this.position);
+        to.scale.set(this.scale);
     }
 
-    public Vector2f getScale() {
-        return scale;
-    }
+    @Override
+    public boolean equals(Object o) {
+        if (o == null) return false;
+        if (!(o instanceof Transform)) return false;
 
-    public void setScale(Vector2f scale) {
-        this.scale = scale;
+        Transform t = (Transform)o;
+        return t.position.equals(this.position) && t.scale.equals(this.scale);
     }
 }
