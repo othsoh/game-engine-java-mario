@@ -6,6 +6,7 @@ import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL11C;
 import org.lwjgl.system.MemoryUtil;
 
 public class Window {
@@ -17,7 +18,7 @@ public class Window {
     private long glfwWindow;
 
 
-    public float r, g, b, a;
+    public float r = 1, g=1, b=1, a=1;
 
     private static Scene currentScene = null ;
 
@@ -116,6 +117,9 @@ public class Window {
         // It must be called after the window is created and made current
         // and before any OpenGL calls are made
         GL.createCapabilities();
+        //enable alpha blend
+        GL11C.glEnable(GL11C.GL_BLEND);
+        GL11.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE_MINUS_SRC_ALPHA);
 
         Window.changeScene(0);
     }

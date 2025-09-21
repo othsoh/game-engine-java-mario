@@ -14,6 +14,9 @@ public class LevelEditorScene extends Scene {
 
 
     GameObject obj1;
+    GameObject obj2;
+
+    SpriteSheet sprites;
 
     public LevelEditorScene() {
         System.out.println("Inside level editor scene");
@@ -26,14 +29,22 @@ public class LevelEditorScene extends Scene {
 
         this.camera = new Camera(new Vector2f(-250, 0));
 
-        SpriteSheet sprites = AssetPool.getSpriteSheet("assets/images/spritesheet.png");
+        sprites = AssetPool.getSpriteSheet("assets/images/spritesheet.png");
 
-        obj1 = new GameObject("Obj1",new Transform(new Vector2f(100,100), new Vector2f(256,256)));
-        obj1.addComponent(new SpriteRenderer(sprites.getSprite(0)));
+        obj1 = new GameObject("Obj1",
+                new Transform(new Vector2f(200,100),
+                        new Vector2f(256,256)),
+                2);
+        obj1.addComponent(new SpriteRenderer(new Sprite(
+                AssetPool.getTextures("assets/images/blendImage1.png")
+        )));
         this.addGameObjectToScene(obj1);
 
-        GameObject obj2 = new GameObject("Obj2",new Transform(new Vector2f(400,100), new Vector2f(256,256)));
-        obj2.addComponent(new SpriteRenderer(sprites.getSprite(25)));
+        obj2 = new GameObject("Obj2",
+                new Transform(new Vector2f(400,100), new Vector2f(256,256)),
+                1);
+        obj2.addComponent(new SpriteRenderer(new Sprite(
+                AssetPool.getTextures("assets/images/blendImage2.png"))));
         this.addGameObjectToScene(obj2);
 
     }
@@ -51,7 +62,6 @@ public class LevelEditorScene extends Scene {
     public void update(float dt) {
         System.out.println("FPS:" + (1.0f / dt));
 
-        this.obj1.transform.position.x += 10 * dt;
 
         for( GameObject go: this.gameObjects){
             go.update(dt);

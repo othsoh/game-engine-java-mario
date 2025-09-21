@@ -4,18 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fc8b585a-0218-44c2-8e33-b0ad07898669" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/images/spritesheet.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/sid/components/Sprite.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/sid/components/SpriteSheet.java" afterDir="false" />
+    <list default="true" id="fc8b585a-0218-44c2-8e33-b0ad07898669" name="Changes" comment="dirty flag system">
+      <change afterPath="$PROJECT_DIR$/assets/images/blendImage1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/images/blendImage2.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/GameObject.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/LevelEditorScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/LevelEditorScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/Transform.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/Transform.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/Window.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/components/SpriteRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/components/SpriteRenderer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/renderer/RenderBatch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/renderer/RenderBatch.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/renderer/Renderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/renderer/Renderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/renderer/Texture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/renderer/Texture.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/utils/AssetPool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/utils/AssetPool.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +35,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;othsoh&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/othsoh/game-engine-java-mario.git&quot;,
+    &quot;accountId&quot;: &quot;395ae6d6-4ad5-4740-ba67-48df94b8c9eb&quot;
+  }
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/main/java/org/sid/Window.java" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -71,7 +81,7 @@
     &quot;Gradle.mario-tuto-yt [:Main.main()].executor&quot;: &quot;Run&quot;,
     &quot;Gradle.mario-tuto-yt [:org.sid.Main.main()].executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;webmorphers@gmail.com&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/game-dev/tutorial/mario-tuto-yt/assets/images&quot;,
@@ -180,7 +190,8 @@
       <workItem from="1758067093562" duration="297000" />
       <workItem from="1758108044326" duration="8070000" />
       <workItem from="1758290926308" duration="6237000" />
-      <workItem from="1758323529699" duration="4555000" />
+      <workItem from="1758323529699" duration="6019000" />
+      <workItem from="1758451836830" duration="2645000" />
     </task>
     <task id="LOCAL-00001" summary="ECS">
       <option name="closed" value="true" />
@@ -206,7 +217,15 @@
       <option name="project" value="LOCAL" />
       <updated>1758024886370</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="dirty flag system">
+      <option name="closed" value="true" />
+      <created>1758328280370</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1758328280370</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -216,7 +235,8 @@
     <MESSAGE value="ECS" />
     <MESSAGE value="resource management using AssetPool" />
     <MESSAGE value="Texture batching" />
-    <option name="LAST_COMMIT_MESSAGE" value="Texture batching" />
+    <MESSAGE value="dirty flag system" />
+    <option name="LAST_COMMIT_MESSAGE" value="dirty flag system" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
