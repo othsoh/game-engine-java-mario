@@ -1,6 +1,7 @@
 package org.sid;
 
 
+import imgui.ImGui;
 import org.joml.Vector2f;
 import org.joml.Vector4f;
 import org.lwjgl.system.CallbackI;
@@ -35,18 +36,33 @@ public class LevelEditorScene extends Scene {
                 new Transform(new Vector2f(200,100),
                         new Vector2f(256,256)),
                 2);
-        obj1.addComponent(new SpriteRenderer(new Sprite(
-                AssetPool.getTextures("assets/images/blendImage1.png")
-        )));
+        obj1.addComponent(new SpriteRenderer(new Vector4f(1f,0,0,0.5f)));
         this.addGameObjectToScene(obj1);
+        this.activeGameObject = obj1;
 
         obj2 = new GameObject("Obj2",
                 new Transform(new Vector2f(400,100), new Vector2f(256,256)),
                 1);
-        obj2.addComponent(new SpriteRenderer(new Sprite(
-                AssetPool.getTextures("assets/images/blendImage2.png"))));
+        obj2.addComponent(new SpriteRenderer(new Vector4f(0,1f,0,0.5f)));
         this.addGameObjectToScene(obj2);
 
+    }
+    @Override
+    public void update(float dt) {
+        System.out.println("FPS:" + (1.0f / dt));
+
+
+        for( GameObject go: this.gameObjects){
+            go.update(dt);
+        }
+        this.renderer.render();
+    }
+
+    @Override
+    public void imgui(){
+        ImGui.begin("test");
+        ImGui.text("Test Window");
+        ImGui.end();
     }
 
     private void loadResources() {
@@ -58,16 +74,7 @@ public class LevelEditorScene extends Scene {
                         ));
     }
 
-    @Override
-    public void update(float dt) {
-        System.out.println("FPS:" + (1.0f / dt));
 
-
-        for( GameObject go: this.gameObjects){
-            go.update(dt);
-        }
-        this.renderer.render();
-    }
 
 }
 

@@ -3,6 +3,7 @@ package org.sid.renderer;
 import imgui.*;
 import imgui.flag.ImFontAtlasFlags;
 import imgui.flag.ImGuiFreeTypeBuilderFlags;
+import org.sid.Scene;
 
 public class ImguiLayer {
 
@@ -14,6 +15,7 @@ public class ImguiLayer {
 
     public void setup(ImGuiIO io) {
         this.io = io; // Assign the IO instance from the Window class
+        io.setIniFilename("imgui.ini");
 
         // Important: Use getFonts() on the provided io instance
         final ImFontAtlas fontAtlas = io.getFonts();

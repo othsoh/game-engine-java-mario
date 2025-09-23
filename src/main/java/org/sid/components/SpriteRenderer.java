@@ -1,5 +1,6 @@
 package org.sid.components;
 
+import imgui.ImGui;
 import org.joml.Vector2f;
 import org.joml.Vector4f;
 import org.sid.Component;
@@ -38,6 +39,14 @@ public class SpriteRenderer extends Component {
         if (!this.lastTransform.equals(this.gameObject.transform)) {
             this.gameObject.transform.copy(this.lastTransform);
             isDirty = true;
+        }
+    }
+    @Override
+    public void imgui(){
+        float[] imColor = {color.x, color.y, color.z, color.w};
+        if(ImGui.colorEdit4("Color", imColor)){
+            this.color.set(imColor);
+            this.isDirty = true;
         }
     }
 

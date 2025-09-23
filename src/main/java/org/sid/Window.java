@@ -76,9 +76,7 @@ public class Window {
         loop();
         destroy();
     }
-
-    public void init() {
-        // GLFW error callback
+    public void initWindow(){
         GLFWErrorCallback.createPrint(System.err).set();
         if (!GLFW.glfwInit()) {
             throw new IllegalStateException("Unable to initialize GLFW");
@@ -108,13 +106,18 @@ public class Window {
         GL.createCapabilities();
         GL11C.glEnable(GL11C.GL_BLEND);
         GL11.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE_MINUS_SRC_ALPHA);
-
-        // --- ImGui setup: CONTEXT CREATION ---
+    }
+    public void initImgui(){
         ImGui.createContext();
         ImGuiIO io = ImGui.getIO();
         imguiLayer.setup(io);          // add fonts here
         imGuiGlfw.init(glfwWindow, true);
         imGuiGl3.init(glslVersion);    // builds atlas with your fonts
+    }
+
+    public void init() {
+        initWindow();
+        initImgui();
 
         Window.changeScene(0);
     }
@@ -138,8 +141,10 @@ public class Window {
             imGuiGlfw.newFrame();
             ImGui.newFrame();
 
+
             // Draw your ImGui UI here or via an injected layer
             if (imguiLayer != null) {
+                currentScene.sceneImgui();
                 imguiLayer.imgui();
             }
 

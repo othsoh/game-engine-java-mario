@@ -50,6 +50,12 @@ public class GameObject {
         }
     }
 
+    public void imgui(){
+        for (Component c : components){
+            c.imgui();
+        }
+    }
+
     public void addComponent(Component component){
         components.add(component);
         component.gameObject = this;
