@@ -4,16 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fc8b585a-0218-44c2-8e33-b0ad07898669" name="Changes" comment="dirty flag system">
-      <change afterPath="$PROJECT_DIR$/assets/images/blendImage1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/images/blendImage2.png" afterDir="false" />
+    <list default="true" id="fc8b585a-0218-44c2-8e33-b0ad07898669" name="Changes" comment="alpha blending and z-index implementation">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/sid/BetterMain.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/sid/renderer/ImguiLayer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/GameObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/LevelEditorScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/LevelEditorScene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/Window.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/components/SpriteRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/components/SpriteRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/renderer/RenderBatch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/renderer/RenderBatch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/renderer/Renderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/renderer/Renderer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +21,34 @@
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="mario-tuto-yt" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="mario-tuto-yt" type="f1a62948:ProjectNode" />
+                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="mario-tuto-yt" type="f1a62948:ProjectNode" />
+                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
+                <item name="compileClasspath" type="62daadca:ExternalSystemViewDefaultContributor$DependencyScopeExternalSystemNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -79,12 +104,13 @@
     &quot;Gradle.Build mario-tuto-yt.executor&quot;: &quot;Run&quot;,
     &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
     &quot;Gradle.mario-tuto-yt [:Main.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.mario-tuto-yt [:org.sid.BetterMain.main()].executor&quot;: &quot;Run&quot;,
     &quot;Gradle.mario-tuto-yt [:org.sid.Main.main()].executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/game-dev/tutorial/mario-tuto-yt/assets/images&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/game-dev/tutorial/mario-tuto-yt/src/main/java/org/sid&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -99,6 +125,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\game-dev\tutorial\mario-tuto-yt\src\main\java\org\sid" />
       <recent name="C:\game-dev\tutorial\mario-tuto-yt\assets\images" />
       <recent name="C:\game-dev\tutorial\mario-tuto-yt\Assets\images" />
     </key>
@@ -109,9 +136,9 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="org.sid.Main" />
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="BetterMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.sid.BetterMain" />
       <module name="org.sid.mario-tuto-yt.main" />
       <extension name="coverage">
         <pattern>
@@ -123,8 +150,27 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="org.sid.Main" />
+      <module name="org.sid.mario-tuto-yt.main" />
+      <option name="PROGRAM_PARAMETERS" value="java.library.path=libs" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.sid.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.BetterMain" />
+      <item itemvalue="Application.Main" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.BetterMain" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -191,7 +237,12 @@
       <workItem from="1758108044326" duration="8070000" />
       <workItem from="1758290926308" duration="6237000" />
       <workItem from="1758323529699" duration="6019000" />
-      <workItem from="1758451836830" duration="2645000" />
+      <workItem from="1758451836830" duration="5054000" />
+      <workItem from="1758467761293" duration="6717000" />
+      <workItem from="1758543852332" duration="47000" />
+      <workItem from="1758583321043" duration="4232000" />
+      <workItem from="1758587604042" duration="1632000" />
+      <workItem from="1758622817001" duration="3060000" />
     </task>
     <task id="LOCAL-00001" summary="ECS">
       <option name="closed" value="true" />
@@ -225,7 +276,15 @@
       <option name="project" value="LOCAL" />
       <updated>1758328280370</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="alpha blending and z-index implementation">
+      <option name="closed" value="true" />
+      <created>1758454600474</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1758454600474</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -236,7 +295,8 @@
     <MESSAGE value="resource management using AssetPool" />
     <MESSAGE value="Texture batching" />
     <MESSAGE value="dirty flag system" />
-    <option name="LAST_COMMIT_MESSAGE" value="dirty flag system" />
+    <MESSAGE value="alpha blending and z-index implementation" />
+    <option name="LAST_COMMIT_MESSAGE" value="alpha blending and z-index implementation" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

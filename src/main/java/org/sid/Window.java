@@ -1,5 +1,10 @@
 package org.sid;
 
+import imgui.ImGui;
+import imgui.ImGuiIO;
+import imgui.flag.ImGuiConfigFlags;
+import imgui.gl3.ImGuiImplGl3;
+import imgui.glfw.ImGuiImplGlfw;
 import org.lwjgl.Version;
 import org.lwjgl.glfw.Callbacks;
 import org.lwjgl.glfw.GLFW;
@@ -8,77 +13,73 @@ import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL11C;
 import org.lwjgl.system.MemoryUtil;
+import org.sid.renderer.ImguiLayer;
 
 public class Window {
 
     private int width, height;
     private String title;
-
     private static Window window = null;
     private long glfwWindow;
 
+    public float r = 1, g = 1, b = 1, a = 1;
+    private static Scene currentScene = null;
 
-    public float r = 1, g=1, b=1, a=1;
+    // --- ImGui integration ---
+    private final ImGuiImplGlfw imGuiGlfw = new ImGuiImplGlfw();
+    private final ImGuiImplGl3 imGuiGl3 = new ImGuiImplGl3();
+    private String glslVersion = "#version 330 core";
+    private ImguiLayer imguiLayer; // optional: pass your own UI builder
 
-    private static Scene currentScene = null ;
-
-    private Window() {
+    public Window() {
         this.width = 1920;
         this.height = 1080;
         this.title = "Mario";
     }
+    public Window(ImguiLayer imguiLayer){
+        this();
+        this.imguiLayer = imguiLayer;
 
-    public static void changeScene(int newScene){
-        switch (newScene){
+    }
+
+    public static void changeScene(int newScene) {
+        switch (newScene) {
             case 0:
                 currentScene = new LevelEditorScene();
-                currentScene.init();
-                currentScene.start();
                 break;
             case 1:
                 currentScene = new LevelScene();
-                currentScene.init();
-                currentScene.start();
                 break;
             default:
-                assert false: "Unknown scene"+ newScene;
-                break;
+                throw new IllegalArgumentException("Unknown scene " + newScene);
         }
+        currentScene.init();
+        currentScene.start();
     }
-
 
     public static Window get() {
-        if (Window.window == null) {
-            Window.window = new Window();
-        }
-        return Window.window;
+        if (window == null) window = new Window();
+        return window;
     }
-    public static Scene getScene(){
+
+    public static Scene getScene() {
         return get().currentScene;
     }
 
-    public void run() {
-
-        System.out.println("Window created with title: " + this.title + Version.getVersion());
-
-        init();
-        loop();
-
-        // Free the window callbacks and destroy the window
-        Callbacks.glfwFreeCallbacks(glfwWindow);
-        GLFW.glfwDestroyWindow(glfwWindow);
-
-        // Terminate GLFW and free the error callback
-        GLFW.glfwTerminate();
-        GLFW.glfwSetErrorCallback(null).free();
+    public void setImGuiLayer(ImguiLayer layer) {
+        this.imguiLayer = layer;
     }
 
-    private void init() {
+    public void run() {
+        System.out.println("Window created with title: " + this.title + " " + Version.getVersion());
+        init();
+        loop();
+        destroy();
+    }
 
-        // Setup Error Callback
+    public void init() {
+        // GLFW error callback
         GLFWErrorCallback.createPrint(System.err).set();
-
-        // Initialize GLFW
         if (!GLFW.glfwInit()) {
             throw new IllegalStateException("Unable to initialize GLFW");
         }
@@ -89,69 +90,86 @@ public class Window {
         GLFW.glfwWindowHint(GLFW.GLFW_RESIZABLE, GLFW.GLFW_TRUE);
         GLFW.glfwWindowHint(GLFW.GLFW_MAXIMIZED, GLFW.GLFW_TRUE);
 
-        // Create the window
-        glfwWindow = GLFW.glfwCreateWindow(this.width, this.height, this.title, MemoryUtil.NULL, MemoryUtil.NULL);
-
+        glfwWindow = GLFW.glfwCreateWindow(width, height, title, MemoryUtil.NULL, MemoryUtil.NULL);
         if (glfwWindow == MemoryUtil.NULL) {
             throw new RuntimeException("Failed to create the GLFW window");
         }
 
-        //Call Mouse and Keyboard Callbacks
+        // Input callbacks
         GLFW.glfwSetCursorPosCallback(glfwWindow, MouseListener::MousePositionCallBack);
         GLFW.glfwSetScrollCallback(glfwWindow, MouseListener::MouseScrolCallback);
         GLFW.glfwSetMouseButtonCallback(glfwWindow, MouseListener::MouseButtonCallback);
-
         GLFW.glfwSetKeyCallback(glfwWindow, keyboardListener::keyCallBack);
 
-        // Create the OpenGl Context
         GLFW.glfwMakeContextCurrent(glfwWindow);
-
-        // Enable v-sync
         GLFW.glfwSwapInterval(1);
-
-        // Show the window
         GLFW.glfwShowWindow(glfwWindow);
 
-        // Create the Capabilities
-        // This is important for OpenGL to work
-        // It must be called after the window is created and made current
-        // and before any OpenGL calls are made
         GL.createCapabilities();
-        //enable alpha blend
         GL11C.glEnable(GL11C.GL_BLEND);
         GL11.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE_MINUS_SRC_ALPHA);
+
+        // --- ImGui setup: CONTEXT CREATION ---
+        ImGui.createContext();
+        ImGuiIO io = ImGui.getIO();
+        imguiLayer.setup(io);          // add fonts here
+        imGuiGlfw.init(glfwWindow, true);
+        imGuiGl3.init(glslVersion);    // builds atlas with your fonts
 
         Window.changeScene(0);
     }
 
     private void loop() {
-
         float beginTime = (float) GLFW.glfwGetTime();
-        float endTime = 0.0f;
         float dt = -1.0f;
 
-        // Run the rendering loop until the user closes the window
         while (!GLFW.glfwWindowShouldClose(glfwWindow)) {
-            // Poll for window events
             GLFW.glfwPollEvents();
 
-            // Set the clear color to red
+            // Update & clear
             GL11.glClearColor(r, g, b, a);
             GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
 
-            if (dt>= 0){
+            if (dt >= 0 && currentScene != null) {
                 currentScene.update(dt);
             }
 
-            // Swap the buffers
+            // --- ImGui frame start ---
+            imGuiGlfw.newFrame();
+            ImGui.newFrame();
+
+            // Draw your ImGui UI here or via an injected layer
+            if (imguiLayer != null) {
+                imguiLayer.imgui();
+            }
+
+            // Render ImGui
+            ImGui.render();
+            imGuiGl3.renderDrawData(ImGui.getDrawData());
+
+            // Multi-viewport
+            if (ImGui.getIO().hasConfigFlags(ImGuiConfigFlags.ViewportsEnable)) {
+                final long backup = GLFW.glfwGetCurrentContext();
+                ImGui.updatePlatformWindows();
+                ImGui.renderPlatformWindowsDefault();
+                GLFW.glfwMakeContextCurrent(backup);
+            }
+
             GLFW.glfwSwapBuffers(glfwWindow);
 
-            endTime = (float) GLFW.glfwGetTime();
+            float endTime = (float) GLFW.glfwGetTime();
             dt = endTime - beginTime;
             beginTime = endTime;
         }
-
     }
 
-
+    public void destroy() {
+        imGuiGl3.dispose();
+        imGuiGlfw.dispose();
+        ImGui.destroyContext();
+        Callbacks.glfwFreeCallbacks(glfwWindow);
+        GLFW.glfwDestroyWindow(glfwWindow);
+        GLFW.glfwTerminate();
+        GLFW.glfwSetErrorCallback(null).free();
+    }
 }
