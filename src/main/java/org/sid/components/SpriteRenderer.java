@@ -9,17 +9,11 @@ import org.sid.components.Sprite;
 import org.sid.renderer.Texture;
 
 public class SpriteRenderer extends Component {
-
-    private Vector4f color = new Vector4f(1, 1, 1, 1);;
-    private Sprite sprite;
+    private Vector4f color = new Vector4f(1, 1, 1, 1);
+    private Sprite sprite = new Sprite();
 
     private transient Transform lastTransform;
-    private transient boolean isDirty = false;
-
-    public SpriteRenderer(){
-        this.sprite = new Sprite();
-        isDirty = true;
-    }
+    private transient boolean isDirty = true;
 
 //    public SpriteRenderer(Vector4f color) {
 //        this.color = color;
@@ -31,7 +25,6 @@ public class SpriteRenderer extends Component {
 //        this.sprite = sprite;
 //        this.color = new Vector4f(1, 1, 1, 1);
 //        this.isDirty = true;
-//
 //    }
 
     @Override
@@ -46,11 +39,12 @@ public class SpriteRenderer extends Component {
             isDirty = true;
         }
     }
+
     @Override
-    public void imgui(){
+    public void imgui() {
         float[] imColor = {color.x, color.y, color.z, color.w};
-        if(ImGui.colorEdit4("Color", imColor)){
-            this.color.set(imColor);
+        if (ImGui.colorPicker4("Color Picker: ", imColor)) {
+            this.color.set(imColor[0], imColor[1], imColor[2], imColor[3]);
             this.isDirty = true;
         }
     }

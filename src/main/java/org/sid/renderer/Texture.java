@@ -9,125 +9,74 @@ import org.lwjgl.stb.STBImage;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.stb.STBImage.*;
+
 public class Texture {
 
     private String filepath;
-    private int textureID;
-    private int width, height ;
+    private int texID;
+    private int width, height;
 
-    public Texture(){
+//    public Texture(String filepath) {
+//
+//    }
 
-    }
-
-    public void init(String filepath){
+    public void init(String filepath) {
         this.filepath = filepath;
 
-        //Generate texture on GPU
-        textureID = GL11.glGenTextures();
-        GL11.glBindTexture(GL11.GL_TEXTURE_2D, textureID);
-        //set texture params
+        // Generate texture on GPU
+        texID = glGenTextures();
+        glBindTexture(GL_TEXTURE_2D, texID);
 
-        //repeat image
-        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_S, GL11.GL_REPEAT);
-        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_T, GL11.GL_REPEAT);
-
-        //when stretch image pixelate
-        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST); // nearest pixel turning to the next pixel (looking like one big pixel)
-        //when shrink image pixelate
-        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
+        // Set texture parameters
+        // Repeat image in both directions
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+        // When stretching the image, pixelate
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+        // When shrinking an image, pixelate
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
         IntBuffer width = BufferUtils.createIntBuffer(1);
         IntBuffer height = BufferUtils.createIntBuffer(1);
         IntBuffer channels = BufferUtils.createIntBuffer(1);
-        STBImage.stbi_set_flip_vertically_on_load(true);
-        ByteBuffer image = STBImage.stbi_load(filepath, width, height, channels, 0);
+        stbi_set_flip_vertically_on_load(true);
+        ByteBuffer image = stbi_load(filepath, width, height, channels, 0);
 
         if (image != null) {
             this.width = width.get(0);
             this.height = height.get(0);
-            int format;
-            if (channels.get(0) == 4) {
-                format = GL11.GL_RGBA;
-            } else if (channels.get(0) == 3) {
-                format = GL11.GL_RGB;
+
+            if (channels.get(0) == 3) {
+                glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width.get(0), height.get(0),
+                        0, GL_RGB, GL_UNSIGNED_BYTE, image);
+            } else if (channels.get(0) == 4) {
+                glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width.get(0), height.get(0),
+                        0, GL_RGBA, GL_UNSIGNED_BYTE, image);
             } else {
-                format = GL11.GL_RED;
+                assert false : "Error: (Texture) Unknown number of channesl '" + channels.get(0) + "'";
             }
-
-            GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, format, width.get(0), height.get(0),
-                    0, format, GL11.GL_UNSIGNED_BYTE, image);
-
-            System.out.println("Loaded texture: " + filepath +
-                               " (" + width.get(0) + "x" + height.get(0) +
-                               ", " + channels.get(0) + " channels)");
         } else {
-            assert false: "Error: Couldn't load Image " + filepath + " ~~~~ lvl: Texture";
+            assert false : "Error: (Texture) Could not load image '" + filepath + "'";
         }
 
-        STBImage.stbi_image_free(image);
+        stbi_image_free(image);
     }
 
-//    public Texture(String filepath) {
-//        this.filepath = filepath;
-//
-//        //Generate texture on GPU
-//        textureID = GL11.glGenTextures();
-//        GL11.glBindTexture(GL11.GL_TEXTURE_2D, textureID);
-//        //set texture params
-//
-//        //repeat image
-//        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_S, GL11.GL_REPEAT);
-//        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_T, GL11.GL_REPEAT);
-//
-//        //when stretch image pixelate
-//        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST); // nearest pixel turning to the next pixel (looking like one big pixel)
-//        //when shrink image pixelate
-//        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
-//
-//        IntBuffer width = BufferUtils.createIntBuffer(1);
-//        IntBuffer height = BufferUtils.createIntBuffer(1);
-//        IntBuffer channels = BufferUtils.createIntBuffer(1);
-//        STBImage.stbi_set_flip_vertically_on_load(true);
-//        ByteBuffer image = STBImage.stbi_load(filepath, width, height, channels, 0);
-//
-//        if (image != null) {
-//            this.width = width.get(0);
-//            this.height = height.get(0);
-//            int format;
-//            if (channels.get(0) == 4) {
-//                format = GL11.GL_RGBA;
-//            } else if (channels.get(0) == 3) {
-//                format = GL11.GL_RGB;
-//            } else {
-//                format = GL11.GL_RED;
-//            }
-//
-//            GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, format, width.get(0), height.get(0),
-//                    0, format, GL11.GL_UNSIGNED_BYTE, image);
-//
-//            System.out.println("Loaded texture: " + filepath +
-//                               " (" + width.get(0) + "x" + height.get(0) +
-//                               ", " + channels.get(0) + " channels)");
-//        } else {
-//            assert false: "Error: Couldn't load Image " + filepath + " ~~~~ lvl: Texture";
-//        }
-//
-//        STBImage.stbi_image_free(image);
-//    }
-    
-    public void bind(){
-        GL11.glBindTexture(GL11.GL_TEXTURE_2D, textureID);
-    }
-    
-    public void unbind(){
-        GL11.glBindTexture(GL11.GL_TEXTURE_2D, 0);
+    public void bind() {
+        glBindTexture(GL_TEXTURE_2D, texID);
     }
 
-    public int getHeight() {
-        return height;
+    public void unbind() {
+        glBindTexture(GL_TEXTURE_2D, 0);
     }
 
     public int getWidth() {
-        return width;
+        return this.width;
+    }
+
+    public int getHeight() {
+        return this.height;
     }
 }

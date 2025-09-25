@@ -17,6 +17,7 @@ public class Sprite {
     public Sprite(){
 
     }
+
     public void init(Texture texture){
         this.texture = texture;
     }

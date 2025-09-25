@@ -17,7 +17,7 @@ public  class AssetPool {
     private static Map<String, SpriteSheet> spriteSheets = new HashMap<>();
 
 
-    public static Shader getShaders( String resourceName) {
+    public static Shader getShader( String resourceName) {
         File file = new File(resourceName);
         if (shaders.containsKey(file.getAbsolutePath())){
             return shaders.get(file.getAbsolutePath());
@@ -30,7 +30,7 @@ public  class AssetPool {
     }
 
 
-    public static Texture getTextures(String resourceName) {
+    public static Texture getTexture(String resourceName) {
         File file = new File(resourceName);
         if (textures.containsKey(file.getAbsolutePath())){
             return AssetPool.textures.get(file.getAbsolutePath());

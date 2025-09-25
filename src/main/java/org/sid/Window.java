@@ -53,6 +53,7 @@ public class Window {
             default:
                 throw new IllegalArgumentException("Unknown scene " + newScene);
         }
+        currentScene.load();
         currentScene.init();
         currentScene.start();
     }
@@ -125,8 +126,6 @@ public class Window {
     private void loop() {
         float beginTime = (float) GLFW.glfwGetTime();
         float dt = -1.0f;
-        currentScene.init();
-        currentScene.load();
         while (!GLFW.glfwWindowShouldClose(glfwWindow)) {
             GLFW.glfwPollEvents();
 

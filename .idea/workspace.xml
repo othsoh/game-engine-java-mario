@@ -4,20 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fc8b585a-0218-44c2-8e33-b0ad07898669" name="Changes" comment="ImGui Scene Integration">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/sid/utils/serializers/ComponentSerializer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/sid/utils/serializers/GameObjectDeserializer.java" afterDir="false" />
+    <list default="true" id="fc8b585a-0218-44c2-8e33-b0ad07898669" name="Changes" comment="Serialization and Deserialization with gson">
+      <change afterPath="$PROJECT_DIR$/level.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/sid/components/Rigidbody.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/imgui.ini" beforeDir="false" afterPath="$PROJECT_DIR$/imgui.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/Component.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/Component.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/LevelEditorScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/LevelEditorScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/Scene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/Scene.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/Transform.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/Transform.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/Window.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/components/Sprite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/components/Sprite.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/components/SpriteRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/components/SpriteRenderer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/components/SpriteSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/components/SpriteSheet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/renderer/RenderBatch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/renderer/RenderBatch.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/renderer/Texture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/renderer/Texture.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/utils/AssetPool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/utils/AssetPool.java" afterDir="false" />
     </list>
@@ -107,31 +106,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "Gradle.Build mario-tuto-yt.executor": "Run",
-    "Gradle.Download Sources.executor": "Run",
-    "Gradle.mario-tuto-yt [:Main.main()].executor": "Run",
-    "Gradle.mario-tuto-yt [:org.sid.BetterMain.main()].executor": "Run",
-    "Gradle.mario-tuto-yt [:org.sid.Main.main()].executor": "Debug",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/game-dev/tutorial/mario-tuto-yt/src/main/java/org/sid",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Build mario-tuto-yt.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.mario-tuto-yt [:Main.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.mario-tuto-yt [:org.sid.BetterMain.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.mario-tuto-yt [:org.sid.Main.main()].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/game-dev/tutorial/mario-tuto-yt/src/main/java/org/sid&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\game-dev\tutorial\mario-tuto-yt\src\main\java\org\sid" />
@@ -254,7 +253,8 @@
       <workItem from="1758622817001" duration="12067000" />
       <workItem from="1758666730998" duration="3587000" />
       <workItem from="1758725865077" duration="5890000" />
-      <workItem from="1758749664280" duration="2293000" />
+      <workItem from="1758749664280" duration="7868000" />
+      <workItem from="1758807750108" duration="851000" />
     </task>
     <task id="LOCAL-00001" summary="ECS">
       <option name="closed" value="true" />
@@ -320,7 +320,15 @@
       <option name="project" value="LOCAL" />
       <updated>1758666786346</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Serialization and Deserialization with gson">
+      <option name="closed" value="true" />
+      <created>1758752107168</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1758752107168</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -334,15 +342,16 @@
     <MESSAGE value="alpha blending and z-index implementation" />
     <MESSAGE value="Integrating ImGui" />
     <MESSAGE value="ImGui Scene Integration" />
-    <option name="LAST_COMMIT_MESSAGE" value="ImGui Scene Integration" />
+    <MESSAGE value="Serialization and Deserialization with gson" />
+    <option name="LAST_COMMIT_MESSAGE" value="Serialization and Deserialization with gson" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/sid/Scene.java</url>
-          <line>40</line>
-          <option name="timeStamp" value="2" />
+          <line>42</line>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
