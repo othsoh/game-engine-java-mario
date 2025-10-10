@@ -3,15 +3,11 @@ package org.sid.renderer;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Vector2f;
 import org.joml.Vector4f;
-import org.sid.Window;
+import org.sid.jade.Window;
 import org.sid.components.SpriteRenderer;
-import org.sid.renderer.Shader;
-import org.sid.renderer.Texture;
 import org.sid.utils.AssetPool;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 import static org.lwjgl.opengl.GL15.*;

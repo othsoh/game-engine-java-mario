@@ -7,6 +7,7 @@ import org.sid.renderer.Texture;
 public class Sprite {
 
     private Texture texture;
+    private float width, height;
     private Vector2f[] texCoords= new Vector2f[]{
                 new Vector2f(1, 1),
                 new Vector2f(1, 0),
@@ -22,20 +23,6 @@ public class Sprite {
         this.texture = texture;
     }
 
-//    public Sprite(Texture texture) {
-//        this.texture = texture;
-//        Vector2f[] textCoords = new Vector2f[]{
-//                new Vector2f(1, 1),
-//                new Vector2f(1, 0),
-//                new Vector2f(0, 0),
-//                new Vector2f(0, 1)
-//        };
-//        this.texCoords = textCoords;
-//    }
-//    public Sprite(Texture texture, Vector2f[] texCoords){
-//        this.texture = texture;
-//        this.texCoords = texCoords;
-//    }
 
     public Texture getTexture() {
         return texture;
@@ -52,5 +39,24 @@ public class Sprite {
 
     public void setTexCoords(Vector2f[] coords){
         this.texCoords = coords;
+    }
+
+    public float getHeight() {
+        return height;
+    }
+
+    public void setHeight(float height) {
+        this.height = height;
+    }
+
+    public float getWidth() {
+        return width;
+    }
+
+    public void setWidth(float width) {
+        this.width = width;
+    }
+    public int getTextId(){
+        return texture == null? -1 : texture.getId();
     }
 }

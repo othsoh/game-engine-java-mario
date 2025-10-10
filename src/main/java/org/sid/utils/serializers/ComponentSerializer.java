@@ -1,7 +1,7 @@
 package org.sid.utils.serializers;
 
 import com.google.gson.*;
-import org.sid.Component;
+import org.sid.components.Component;
 
 import java.lang.reflect.Type;
 

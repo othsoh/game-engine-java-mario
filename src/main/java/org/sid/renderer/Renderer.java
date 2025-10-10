@@ -1,9 +1,7 @@
 package org.sid.renderer;
 
-import org.sid.GameObject;
+import org.sid.jade.GameObject;
 import org.sid.components.SpriteRenderer;
-import org.sid.renderer.RenderBatch;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -1,17 +1,17 @@
-package org.sid;
+package org.sid.jade;
 
 import org.lwjgl.glfw.GLFW;
 
-public class keyboardListener {
-    private static keyboardListener keyboardListener;
+public class KeyboardListener {
+    private static KeyboardListener keyboardListener;
     private boolean keyPressed[] = new boolean[GLFW.GLFW_KEY_LAST + 2];
 
-    private keyboardListener(){
+    private KeyboardListener(){
     }
 
-    private static keyboardListener get() {
+    private static KeyboardListener get() {
         if (keyboardListener.keyboardListener == null) {
-            keyboardListener.keyboardListener = new keyboardListener();
+            keyboardListener.keyboardListener = new KeyboardListener();
         }
         return keyboardListener.keyboardListener;
     }

@@ -1,4 +1,4 @@
-package org.sid;
+package org.sid.jade;
 
 import org.joml.Vector2f;
 

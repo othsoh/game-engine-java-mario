@@ -4,21 +4,51 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fc8b585a-0218-44c2-8e33-b0ad07898669" name="Changes" comment="Serialization and Deserialization with gson">
-      <change afterPath="$PROJECT_DIR$/level.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/sid/components/Rigidbody.java" afterDir="false" />
+    <list default="true" id="fc8b585a-0218-44c2-8e33-b0ad07898669" name="Changes" comment="Exposing Variables to the Level Editor (need some bug fixes)">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/images/spritesheets/decorationsAndBlocks.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/images/spritesheets/icons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/images/spritesheets/pipes.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/shaders/debugLine2D.glsl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/sid/components/Component.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/sid/components/GridLines.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/sid/components/MouseControls.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/sid/jade/Camera.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/sid/jade/Prefabs.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/sid/renderer/DebugDraw.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/sid/renderer/Line2D.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/sid/utils/Settings.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imgui.ini" beforeDir="false" afterPath="$PROJECT_DIR$/imgui.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/Component.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/Component.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/LevelEditorScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/LevelEditorScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/Transform.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/Transform.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/Window.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/spritesheet.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/images/spritesheets/spritesheet.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid11104.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid19880.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid22600.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/imgui.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/level.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/BetterMain.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/Camera.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/Component.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/jade/GameObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/LevelEditorScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/scenes/LevelEditorScene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/LevelScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/scenes/LevelScene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/MouseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/jade/MouseListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/Scene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/scenes/Scene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/Transform.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/jade/Transform.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/jade/Window.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/components/FontRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/components/FontRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/components/Rigidbody.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/components/Rigidbody.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/components/Sprite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/components/Sprite.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/components/SpriteRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/components/SpriteRenderer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/components/SpriteSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/components/SpriteSheet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/keyboardListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/jade/KeyboardListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/renderer/ImguiLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/jade/ImguiLayer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/renderer/RenderBatch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/renderer/RenderBatch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/renderer/Renderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/renderer/Renderer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/renderer/Texture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/renderer/Texture.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/utils/AssetPool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/utils/AssetPool.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/utils/serializers/ComponentSerializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/utils/serializers/ComponentSerializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/utils/serializers/GameObjectDeserializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/utils/serializers/GameObjectDeserializer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +79,7 @@
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="mario-tuto-yt" type="f1a62948:ProjectNode" />
                 <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
-                <item name="compileClasspath" type="62daadca:ExternalSystemViewDefaultContributor$DependencyScopeExternalSystemNode" />
+                <item name="runtimeClasspath" type="62daadca:ExternalSystemViewDefaultContributor$DependencyScopeExternalSystemNode" />
               </path>
             </expand>
             <select />
@@ -61,6 +91,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="GLSL Shader" />
         <option value="Class" />
       </list>
     </option>
@@ -115,6 +146,7 @@
     &quot;Gradle.mario-tuto-yt [:org.sid.BetterMain.main()].executor&quot;: &quot;Run&quot;,
     &quot;Gradle.mario-tuto-yt [:org.sid.Main.main()].executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
@@ -138,26 +170,14 @@
       <recent name="C:\game-dev\tutorial\mario-tuto-yt\Assets\images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\game-dev\tutorial\mario-tuto-yt\assets\images\spritesheets" />
       <recent name="C:\game-dev\tutorial\mario-tuto-yt\assets\images" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
-    <configuration name="BetterMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.sid.BetterMain" />
-      <module name="org.sid.mario-tuto-yt.main" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.sid.utils.serializers.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="org.sid.Main" />
       <module name="org.sid.mario-tuto-yt.main" />
@@ -172,13 +192,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <list>
-      <item itemvalue="Application.BetterMain" />
-      <item itemvalue="Application.Main" />
-    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.BetterMain" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -255,6 +270,17 @@
       <workItem from="1758725865077" duration="5890000" />
       <workItem from="1758749664280" duration="7868000" />
       <workItem from="1758807750108" duration="851000" />
+      <workItem from="1758837411795" duration="402000" />
+      <workItem from="1758837828576" duration="4854000" />
+      <workItem from="1758886678982" duration="6487000" />
+      <workItem from="1759659957878" duration="3779000" />
+      <workItem from="1759691129093" duration="2493000" />
+      <workItem from="1759831483135" duration="77000" />
+      <workItem from="1759831572969" duration="4020000" />
+      <workItem from="1759851385868" duration="683000" />
+      <workItem from="1759852125347" duration="4746000" />
+      <workItem from="1759920596197" duration="4487000" />
+      <workItem from="1760006908119" duration="14664000" />
     </task>
     <task id="LOCAL-00001" summary="ECS">
       <option name="closed" value="true" />
@@ -344,17 +370,6 @@
     <MESSAGE value="ImGui Scene Integration" />
     <MESSAGE value="Serialization and Deserialization with gson" />
     <option name="LAST_COMMIT_MESSAGE" value="Serialization and Deserialization with gson" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/sid/Scene.java</url>
-          <line>42</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

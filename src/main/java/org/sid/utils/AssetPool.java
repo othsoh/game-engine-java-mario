@@ -1,11 +1,8 @@
 package org.sid.utils;
 
-import org.sid.GameObject;
-import org.sid.components.Sprite;
 import org.sid.components.SpriteSheet;
 import org.sid.renderer.Shader;
 import org.sid.renderer.Texture;
-import org.w3c.dom.Text;
 
 import java.io.File;
 import java.util.HashMap;

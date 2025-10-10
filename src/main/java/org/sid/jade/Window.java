@@ -1,4 +1,4 @@
-package org.sid;
+package org.sid.jade;
 
 import imgui.ImGui;
 import imgui.ImGuiIO;
@@ -13,7 +13,16 @@ import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL11C;
 import org.lwjgl.system.MemoryUtil;
-import org.sid.renderer.ImguiLayer;
+import org.sid.renderer.DebugDraw;
+import org.sid.scenes.LevelEditorScene;
+import org.sid.scenes.LevelScene;
+import org.sid.scenes.Scene;
+
+import java.util.Objects;
+
+import static org.lwjgl.glfw.GLFW.glfwSetDropCallback;
+import static org.lwjgl.glfw.GLFW.glfwSetWindowSizeCallback;
+
 
 public class Window {
 
@@ -89,7 +98,7 @@ public class Window {
         GLFW.glfwWindowHint(GLFW.GLFW_RESIZABLE, GLFW.GLFW_TRUE);
         GLFW.glfwWindowHint(GLFW.GLFW_MAXIMIZED, GLFW.GLFW_TRUE);
 
-        glfwWindow = GLFW.glfwCreateWindow(width, height, title, MemoryUtil.NULL, MemoryUtil.NULL);
+        glfwWindow = GLFW.glfwCreateWindow(this.width, this.height, this.title, MemoryUtil.NULL, MemoryUtil.NULL);
         if (glfwWindow == MemoryUtil.NULL) {
             throw new RuntimeException("Failed to create the GLFW window");
         }
@@ -98,7 +107,11 @@ public class Window {
         GLFW.glfwSetCursorPosCallback(glfwWindow, MouseListener::MousePositionCallBack);
         GLFW.glfwSetScrollCallback(glfwWindow, MouseListener::MouseScrolCallback);
         GLFW.glfwSetMouseButtonCallback(glfwWindow, MouseListener::MouseButtonCallback);
-        GLFW.glfwSetKeyCallback(glfwWindow, keyboardListener::keyCallBack);
+        GLFW.glfwSetKeyCallback(glfwWindow, KeyboardListener::keyCallBack);
+        glfwSetWindowSizeCallback(glfwWindow, (w, newWidth, newHeight) -> {
+            Window.setWidth(newWidth);
+            Window.setHeight(newHeight);
+        });
 
         GLFW.glfwMakeContextCurrent(glfwWindow);
         GLFW.glfwSwapInterval(1);
@@ -129,11 +142,15 @@ public class Window {
         while (!GLFW.glfwWindowShouldClose(glfwWindow)) {
             GLFW.glfwPollEvents();
 
+            DebugDraw.beginFrame();
+
             // Update & clear
             GL11.glClearColor(r, g, b, a);
             GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
 
             if (dt >= 0 && currentScene != null) {
+                DebugDraw.draw();
+
                 currentScene.update(dt);
             }
 
@@ -176,6 +193,22 @@ public class Window {
         Callbacks.glfwFreeCallbacks(glfwWindow);
         GLFW.glfwDestroyWindow(glfwWindow);
         GLFW.glfwTerminate();
-        GLFW.glfwSetErrorCallback(null).free();
+        Objects.requireNonNull(GLFW.glfwSetErrorCallback(null)).free();
+    }
+
+    public static int getWidth() {
+        return get().width;
+    }
+
+    public static int getHeight() {
+        return get().height;
+    }
+
+    public static void setWidth(int newWidth) {
+        get().width = newWidth;
+    }
+
+    public static void setHeight(int newHeight) {
+        get().height = newHeight;
     }
 }

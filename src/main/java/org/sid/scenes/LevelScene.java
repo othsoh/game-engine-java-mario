@@ -1,6 +1,8 @@
-package org.sid;
+package org.sid.scenes;
 
-public class LevelScene extends Scene{
+import org.sid.jade.Window;
+
+public class LevelScene extends Scene {
 
     public LevelScene(){
         System.out.println("Inside level scene");

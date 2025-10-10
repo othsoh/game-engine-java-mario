@@ -1,9 +1,6 @@
-package org.sid.renderer;
+package org.sid.jade;
 
 import imgui.*;
-import imgui.flag.ImFontAtlasFlags;
-import imgui.flag.ImGuiFreeTypeBuilderFlags;
-import org.sid.Scene;
 
 public class ImguiLayer {
 

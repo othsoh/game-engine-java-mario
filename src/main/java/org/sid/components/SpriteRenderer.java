@@ -3,12 +3,11 @@ package org.sid.components;
 import imgui.ImGui;
 import org.joml.Vector2f;
 import org.joml.Vector4f;
-import org.sid.Component;
-import org.sid.Transform;
-import org.sid.components.Sprite;
+import org.sid.jade.Transform;
 import org.sid.renderer.Texture;
 
 public class SpriteRenderer extends Component {
+
     private Vector4f color = new Vector4f(1, 1, 1, 1);
     private Sprite sprite = new Sprite();
 

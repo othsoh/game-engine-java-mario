@@ -1,10 +1,6 @@
 package org.sid.renderer;
 
 import org.lwjgl.BufferUtils;
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL11C;
-import org.lwjgl.opengl.GL45;
-import org.lwjgl.stb.STBImage;
 
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
@@ -13,7 +9,6 @@ import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.stb.STBImage.*;
 
 public class Texture {
-
     private String filepath;
     private int texID;
     private int width, height;
@@ -78,5 +73,8 @@ public class Texture {
 
     public int getHeight() {
         return this.height;
+    }
+    public int getId(){
+        return this.texID;
     }
 }

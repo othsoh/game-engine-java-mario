@@ -1,9 +1,9 @@
 package org.sid.utils.serializers;
 
 import com.google.gson.*;
-import org.sid.Component;
-import org.sid.GameObject;
-import org.sid.Transform;
+import org.sid.components.Component;
+import org.sid.jade.GameObject;
+import org.sid.jade.Transform;
 
 import java.lang.reflect.Type;
 

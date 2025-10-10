@@ -1,7 +1,5 @@
 package org.sid.components;
 
-import org.sid.Component;
-
 public class FontRenderer extends Component {
 
     @Override

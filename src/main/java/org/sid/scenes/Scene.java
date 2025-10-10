@@ -1,9 +1,11 @@
-package org.sid;
+package org.sid.scenes;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import imgui.ImGui;
-import org.lwjgl.system.CallbackI;
+import org.sid.components.Component;
+import org.sid.jade.Camera;
+import org.sid.jade.GameObject;
 import org.sid.renderer.Renderer;
 import org.sid.utils.serializers.ComponentSerializer;
 import org.sid.utils.serializers.GameObjectDeserializer;
@@ -11,7 +13,6 @@ import org.sid.utils.serializers.GameObjectDeserializer;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,10 @@ public abstract class Scene {
     protected List<GameObject> gameObjects = new ArrayList<>();
     private boolean isRunning = false;
     protected GameObject activeGameObject = null;
-    protected boolean isLevelLLoaded= false;
+    protected boolean isLevelLoaded= false;
+
+
+    public int gameObjectSize = 0;
 
     public Scene() {
     }
@@ -39,8 +43,10 @@ public abstract class Scene {
     public void addGameObjectToScene(GameObject gameObject) {
         if(!isRunning){
             gameObjects.add(gameObject);
+            gameObjectSize++;
         }else {
             gameObjects.add(gameObject);
+            gameObjectSize++;
             gameObject.start();
             this.renderer.add(gameObject);
         }
@@ -90,6 +96,7 @@ public abstract class Scene {
         }
     }
 
+
     public void load(){
         Gson gson = new GsonBuilder()
                 .setPrettyPrinting()
@@ -105,11 +112,28 @@ public abstract class Scene {
         }
 
         if (!inFile.isEmpty()){
+
+            int maxCompID = -1;
+            int maxGoID = -1;
+
             GameObject[] gameObjects = gson.fromJson(inFile, GameObject[].class);
             for (GameObject obj : gameObjects ){
                 addGameObjectToScene(obj);
+                for (Component c : obj.getAllComponents()){
+                    if (c.getUid() >maxCompID){
+                        maxCompID = c.getUid();
+                    }
+                }
+                if(obj.getUid()> maxGoID){
+                    maxGoID= obj.getUid();
+                }
             }
-            this.isLevelLLoaded = true;
+            maxGoID++;
+            maxCompID++;
+
+            GameObject.init(maxGoID);
+            Component.init(maxCompID);
+            this.isLevelLoaded = true;
         }
 
     }
