@@ -28,8 +28,14 @@ public class LevelEditorScene extends Scene {
         loadResources();
         this.camera = new Camera(new Vector2f(-250, 0));
         sprites = AssetPool.getSpriteSheet("assets/images/spritesheets/decorationsAndBlocks.png");
+//        DebugDraw.addLine2D(new Vector2f(0,0),new Vector2f(200,200),new Vector3f(1,0,0),90);
+//        DebugDraw.addLine2D(new Vector2f(175,175),new Vector2f(225,175),new Vector3f(1,0,0),120);
+//        DebugDraw.addLine2D(new Vector2f(225,175),new Vector2f(225,225),new Vector3f(1,0,0),120);
+//        DebugDraw.addLine2D(new Vector2f(225,225),new Vector2f(175,225),new Vector3f(1,0,0),120);
+//        DebugDraw.addLine2D(new Vector2f(175,225),new Vector2f(175,175),new Vector3f(1,0,0),120);
+
         if (isLevelLoaded) {
-////            this.activeGameObject = gameObjects.get(0);
+//            this.activeGameObject = gameObjects.get(0);
 //            this.activeGameObject.addComponent(new Rigidbody());
             return;
         }
@@ -70,6 +76,9 @@ public class LevelEditorScene extends Scene {
     public void update(float dt) {
 
         leveLEditor.update(dt);
+
+        DebugDraw.addBox2D(new Vector2f(200,200),new Vector2f(400, 200), 60, new Vector3f(1,0,0), 1);
+        DebugDraw.addCircle2D(new Vector2f(200,200),50,new Vector3f(1,0,0),1);
 
         for (GameObject go : this.gameObjects) {
             go.update(dt);
