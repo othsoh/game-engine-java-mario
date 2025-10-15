@@ -4,12 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fc8b585a-0218-44c2-8e33-b0ad07898669" name="Changes" comment="Debug drawing + drag and drop + grid drawing + snap to grid">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/sid/utils/JMath.java" afterDir="false" />
+    <list default="true" id="fc8b585a-0218-44c2-8e33-b0ad07898669" name="Changes" comment="Drawing Boxes and Circles">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/sid/physics2d/primitives/AABB.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/sid/physics2d/primitives/Box2D.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/sid/physics2d/primitives/Circle.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/sid/physics2d/primitives/Collider2D.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/sid/physics2d/rigidbody/IntersectionDetector2D.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/sid/physics2d/rigidbody/Rigidbody2D.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/Collider2DTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/renderer/DebugDraw.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/renderer/DebugDraw.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/scenes/LevelEditorScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/scenes/LevelEditorScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/utils/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/utils/Settings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/components/Rigidbody.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/renderer/Line2D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/renderer/Line2D.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +30,9 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand>
@@ -93,7 +102,9 @@
   &quot;associatedIndex&quot;: 4
 }</component>
   <component name="ProjectId" id="2x2aoIIeKB0soUABdSq86Bu3NPI" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -102,6 +113,8 @@
   &quot;keyToString&quot;: {
     &quot;Application.Main.executor&quot;: &quot;Run&quot;,
     &quot;Gradle.Build mario-tuto-yt.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Collider2DTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Collider2DTest.pointOnVerticalLineShouldReturnTrue.executor&quot;: &quot;Debug&quot;,
     &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
     &quot;Gradle.mario-tuto-yt [:Main.main()].executor&quot;: &quot;Run&quot;,
     &quot;Gradle.mario-tuto-yt [:org.sid.BetterMain.main()].executor&quot;: &quot;Run&quot;,
@@ -138,7 +151,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="org.sid.Main" />
       <module name="org.sid.mario-tuto-yt.main" />
@@ -151,8 +164,37 @@
       </extension>
       <method v="2">
         <option name="Make" enabled="true" />
+        <option name="RunConfigurationTask" enabled="true" run_configuration_name="Collider2DTest" run_configuration_type="GradleRunConfiguration" />
       </method>
     </configuration>
+    <configuration name="Collider2DTest" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;Collider2DTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Gradle.Collider2DTest" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
@@ -242,7 +284,11 @@
       <workItem from="1759852125347" duration="4746000" />
       <workItem from="1759920596197" duration="4487000" />
       <workItem from="1760006908119" duration="19202000" />
-      <workItem from="1760183737692" duration="6267000" />
+      <workItem from="1760183737692" duration="9279000" />
+      <workItem from="1760350124835" duration="6707000" />
+      <workItem from="1760385311945" duration="1303000" />
+      <workItem from="1760464852751" duration="2682000" />
+      <workItem from="1760527661663" duration="4529000" />
     </task>
     <task id="LOCAL-00001" summary="ECS">
       <option name="closed" value="true" />
@@ -324,7 +370,15 @@
       <option name="project" value="LOCAL" />
       <updated>1760099267327</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Drawing Boxes and Circles">
+      <option name="closed" value="true" />
+      <created>1760194748437</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1760194748437</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -340,7 +394,19 @@
     <MESSAGE value="ImGui Scene Integration" />
     <MESSAGE value="Serialization and Deserialization with gson" />
     <MESSAGE value="Debug drawing + drag and drop + grid drawing + snap to grid" />
-    <option name="LAST_COMMIT_MESSAGE" value="Debug drawing + drag and drop + grid drawing + snap to grid" />
+    <MESSAGE value="Drawing Boxes and Circles" />
+    <option name="LAST_COMMIT_MESSAGE" value="Drawing Boxes and Circles" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/Collider2DTest.java</url>
+          <line>46</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

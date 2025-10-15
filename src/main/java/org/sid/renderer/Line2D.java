@@ -2,6 +2,7 @@ package org.sid.renderer;
 
 import org.joml.Vector2f;
 import org.joml.Vector3f;
+import org.lwjgl.system.CallbackI;
 
 public class Line2D {
 
@@ -9,6 +10,11 @@ public class Line2D {
     private Vector2f to;
     private Vector3f color;
     private int lifetime;
+
+    public Line2D(Vector2f from, Vector2f to){
+        this.from = from;
+        this.to= to;
+    }
 
     public Line2D(Vector2f from, Vector2f to, Vector3f color, int lifetime) {
         this.from = from;
@@ -43,5 +49,9 @@ public class Line2D {
 
     public void setColor(Vector3f color) {
         this.color = color;
+    }
+
+    public float lengthSquared(){
+        return  new Vector2f(to).sub(from).lengthSquared();
     }
 }
