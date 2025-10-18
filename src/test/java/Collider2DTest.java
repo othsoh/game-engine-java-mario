@@ -14,20 +14,20 @@ public class Collider2DTest {
     public void PointInLineShouldReturnTrueTest(){
         Line2D line = new Line2D(new Vector2f(2,5), new Vector2f(7,7));
 
-        assertTrue(IntersectionDetector2D.pointOnLine(line, new  Vector2f(2,5)));
+        assertTrue(IntersectionDetector2D.pointOnLine(new  Vector2f(2,5), line ));
     }
     @Test
     public void PointNotInLineShouldReturnFalseTest(){
         Line2D line = new Line2D(new Vector2f(2,5), new Vector2f(7,7));
 
-        Assertions.assertFalse(IntersectionDetector2D.pointOnLine(line, new  Vector2f(0,0)));
+        Assertions.assertFalse(IntersectionDetector2D.pointOnLine( new  Vector2f(0,0), line));
     }
     @Test
     public void pointOnLine2DShouldReturnTrueTest() {
         Line2D line = new Line2D(new Vector2f(0, 0), new Vector2f(12, 4));
         Vector2f point = new Vector2f(0, 0);
 
-        assertTrue(IntersectionDetector2D.pointOnLine(line, point));
+        assertTrue(IntersectionDetector2D.pointOnLine(point, line ));
     }
 
     @Test
@@ -35,7 +35,7 @@ public class Collider2DTest {
         Line2D line = new Line2D(new Vector2f(0, 0), new Vector2f(12, 4));
         Vector2f point = new Vector2f(12, 4);
 
-        assertTrue(IntersectionDetector2D.pointOnLine(line, point));
+        assertTrue(IntersectionDetector2D.pointOnLine(point, line ));
     }
 
     @Test
@@ -43,7 +43,7 @@ public class Collider2DTest {
         Line2D line = new Line2D(new Vector2f(0, 0), new Vector2f(0, 10));
         Vector2f point = new Vector2f(0, 5);
 
-        boolean result = IntersectionDetector2D.pointOnLine(line,point);
+        boolean result = IntersectionDetector2D.pointOnLine(point,line);
         assertTrue(result);
     }
 }

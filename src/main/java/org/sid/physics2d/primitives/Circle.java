@@ -23,4 +23,12 @@ public class Circle {
     public Vector2f getCenter(){
         return this.rigidbody.getPosition();
     }
+
+    public void setRadius(float radius) {
+        this.radius = radius;
+    }
+
+    public void setRigidbody(Rigidbody2D rigidbody) {
+        this.rigidbody = rigidbody;
+    }
 }

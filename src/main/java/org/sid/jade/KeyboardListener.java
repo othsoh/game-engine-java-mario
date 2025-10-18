@@ -10,10 +10,10 @@ public class KeyboardListener {
     }
 
     private static KeyboardListener get() {
-        if (keyboardListener.keyboardListener == null) {
-            keyboardListener.keyboardListener = new KeyboardListener();
+        if (keyboardListener == null) {
+            keyboardListener = new KeyboardListener();
         }
-        return keyboardListener.keyboardListener;
+        return keyboardListener;
     }
     
     public static void keyCallBack(long window, int key, int scancode, int action, int mods){

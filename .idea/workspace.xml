@@ -4,18 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fc8b585a-0218-44c2-8e33-b0ad07898669" name="Changes" comment="Drawing Boxes and Circles">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/sid/physics2d/primitives/AABB.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/sid/physics2d/primitives/Box2D.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/sid/physics2d/primitives/Circle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/sid/physics2d/primitives/Collider2D.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/sid/physics2d/rigidbody/IntersectionDetector2D.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/sid/physics2d/rigidbody/Rigidbody2D.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/Collider2DTest.java" afterDir="false" />
+    <list default="true" id="fc8b585a-0218-44c2-8e33-b0ad07898669" name="Changes" comment="Collision using Separating Axis Theorem">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/sid/physics2d/force/ForceGenerator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/sid/physics2d/force/ForceRegistration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/sid/physics2d/force/ForceRegistry.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/sid/physics2d/primitives/Ray.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/sid/physics2d/primitives/RaycastResult.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/components/Rigidbody.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/renderer/Line2D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/renderer/Line2D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/jade/KeyboardListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/jade/KeyboardListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/physics2d/primitives/Box2D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/physics2d/primitives/Box2D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/physics2d/primitives/Circle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/physics2d/primitives/Circle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/physics2d/rigidbody/IntersectionDetector2D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/physics2d/rigidbody/IntersectionDetector2D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/sid/physics2d/rigidbody/Rigidbody2D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/sid/physics2d/rigidbody/Rigidbody2D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Collider2DTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Collider2DTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,6 +139,9 @@
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="org.sid.physics2d.force" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\game-dev\tutorial\mario-tuto-yt\src\main\java\org\sid" />
       <recent name="C:\game-dev\tutorial\mario-tuto-yt\assets\images" />
@@ -288,7 +292,9 @@
       <workItem from="1760350124835" duration="6707000" />
       <workItem from="1760385311945" duration="1303000" />
       <workItem from="1760464852751" duration="2682000" />
-      <workItem from="1760527661663" duration="4529000" />
+      <workItem from="1760527661663" duration="22856000" />
+      <workItem from="1760690146174" duration="2166000" />
+      <workItem from="1760787206906" duration="6430000" />
     </task>
     <task id="LOCAL-00001" summary="ECS">
       <option name="closed" value="true" />
@@ -378,7 +384,15 @@
       <option name="project" value="LOCAL" />
       <updated>1760194748437</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Intersection Detector">
+      <option name="closed" value="true" />
+      <created>1760533528007</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1760533528007</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -395,7 +409,9 @@
     <MESSAGE value="Serialization and Deserialization with gson" />
     <MESSAGE value="Debug drawing + drag and drop + grid drawing + snap to grid" />
     <MESSAGE value="Drawing Boxes and Circles" />
-    <option name="LAST_COMMIT_MESSAGE" value="Drawing Boxes and Circles" />
+    <MESSAGE value="Intersection Detector" />
+    <MESSAGE value="Collision using Separating Axis Theorem" />
+    <option name="LAST_COMMIT_MESSAGE" value="Collision using Separating Axis Theorem" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

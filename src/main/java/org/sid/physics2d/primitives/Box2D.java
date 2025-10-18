@@ -21,18 +21,18 @@ public class Box2D {
 
     }
 
-    public Vector2f getMin(){
+    public Vector2f getLocalMin(){
         return new Vector2f(rigidbody2D.getPosition()).sub(halfSize);
     }
 
-    public Vector2f getMax(){
+    public Vector2f getLocalMax(){
         return new Vector2f(rigidbody2D.getPosition()).add(halfSize);
     }
 
     public Vector2f[] getVertices(){
         Vector2f[] vertices = {
-                new Vector2f(getMin()), new Vector2f(getMax().x, getMin().y),
-                new Vector2f(getMax()), new Vector2f(getMin().x, getMax().y)
+                new Vector2f(getLocalMin()), new Vector2f(getLocalMax().x, getLocalMin().y),
+                new Vector2f(getLocalMax()), new Vector2f(getLocalMin().x, getLocalMax().y)
         };
 
         if (rigidbody2D.getRotation() != 0.0f){
@@ -51,4 +51,7 @@ public class Box2D {
         return this.rigidbody2D.getPosition();
     }
 
+    public Vector2f getHalfSize(){
+        return this.halfSize;
+    }
 }
