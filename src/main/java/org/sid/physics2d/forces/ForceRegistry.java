@@ -45,7 +45,7 @@ public class ForceRegistry {
     public void zeroForces(){
         for (ForceRegistration force : forceRegistrations){
             //TODO: Implement ME
-            //force.rigidbody.zeroForces();
+//            force.rigidbody.zeroForces();
         }
     }
 
