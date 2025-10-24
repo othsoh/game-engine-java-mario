@@ -2,9 +2,14 @@ package org.sid.jade;
 
 import imgui.ImGui;
 import imgui.ImGuiIO;
+import imgui.ImVec2;
+import imgui.flag.ImGuiCond;
 import imgui.flag.ImGuiConfigFlags;
+import imgui.flag.ImGuiStyleVar;
+import imgui.flag.ImGuiWindowFlags;
 import imgui.gl3.ImGuiImplGl3;
 import imgui.glfw.ImGuiImplGlfw;
+import imgui.type.ImBoolean;
 import org.lwjgl.Version;
 import org.lwjgl.glfw.Callbacks;
 import org.lwjgl.glfw.GLFW;
@@ -13,15 +18,16 @@ import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL11C;
 import org.lwjgl.system.MemoryUtil;
+import org.sid.editor.GameViewWindow;
 import org.sid.renderer.DebugDraw;
+import org.sid.renderer.FrameBuffer;
 import org.sid.scenes.LevelEditorScene;
 import org.sid.scenes.LevelScene;
 import org.sid.scenes.Scene;
 
 import java.util.Objects;
 
-import static org.lwjgl.glfw.GLFW.glfwSetDropCallback;
-import static org.lwjgl.glfw.GLFW.glfwSetWindowSizeCallback;
+import static org.lwjgl.glfw.GLFW.*;
 
 
 public class Window {
@@ -30,6 +36,7 @@ public class Window {
     private String title;
     private static Window window = null;
     private long glfwWindow;
+    private FrameBuffer frameBuffer;
 
     public float r = 1, g = 1, b = 1, a = 1;
     private static Scene currentScene = null;
@@ -47,7 +54,7 @@ public class Window {
     }
     public Window(ImguiLayer imguiLayer){
         this();
-        this.imguiLayer = imguiLayer;
+//        this.imguiLayer = imguiLayer;
 
     }
 
@@ -120,13 +127,21 @@ public class Window {
         GL.createCapabilities();
         GL11C.glEnable(GL11C.GL_BLEND);
         GL11.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE_MINUS_SRC_ALPHA);
+
+
     }
     public void initImgui(){
+
         ImGui.createContext();
         ImGuiIO io = ImGui.getIO();
-        imguiLayer.setup(io);          // add fonts here
+        this.imguiLayer = new ImguiLayer(glfwWindow);
+        this.imguiLayer.setup(io);
+
         imGuiGlfw.init(glfwWindow, true);
         imGuiGl3.init(glslVersion);    // builds atlas with your fonts
+        //2560:1440
+        this.frameBuffer = new FrameBuffer(2560, 1440);
+        GL11.glViewport(0,0 ,2560, 1440 );
     }
 
     public void init() {
@@ -143,10 +158,12 @@ public class Window {
             GLFW.glfwPollEvents();
 
             DebugDraw.beginFrame();
+            this.frameBuffer.bind();
 
             // Update & clear
             GL11.glClearColor(r, g, b, a);
             GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
+
 
             if (dt >= 0 && currentScene != null) {
                 DebugDraw.draw();
@@ -154,9 +171,14 @@ public class Window {
                 currentScene.update(dt);
             }
 
+            this.frameBuffer.unbind();
+
             // --- ImGui frame start ---
             imGuiGlfw.newFrame();
             ImGui.newFrame();
+
+            //setup dock space
+            setupDockSpace();
 
 
             // Draw your ImGui UI here or via an injected layer
@@ -164,11 +186,11 @@ public class Window {
                 currentScene.sceneImgui();
                 imguiLayer.imgui();
             }
-
+            GameViewWindow.imgui();
+           ImGui.end();
             // Render ImGui
             ImGui.render();
             imGuiGl3.renderDrawData(ImGui.getDrawData());
-
             // Multi-viewport
             if (ImGui.getIO().hasConfigFlags(ImGuiConfigFlags.ViewportsEnable)) {
                 final long backup = GLFW.glfwGetCurrentContext();
@@ -184,6 +206,26 @@ public class Window {
             beginTime = endTime;
         }
         currentScene.saveAndExit();
+    }
+
+    private void setupDockSpace() {
+
+        int windowFlags = ImGuiWindowFlags.NoDocking | ImGuiWindowFlags.MenuBar;
+
+        ImGui.setNextWindowPos(0.0f, 0.0f, ImGuiCond.Always);
+        ImGui.setNextWindowSize(Window.getWidth(), Window.getHeight());
+        ImGui.pushStyleVar(ImGuiStyleVar.WindowRounding, 0.0f);
+        ImGui.pushStyleVar(ImGuiStyleVar.WindowBorderSize, 0.0f);
+
+        windowFlags |= ImGuiWindowFlags.NoTitleBar | ImGuiWindowFlags.NoCollapse | ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoMove;
+        windowFlags |= ImGuiWindowFlags.NoBringToFrontOnFocus | ImGuiWindowFlags.NoNavFocus;
+
+        ImGui.begin("DockSpace Demo", new ImBoolean(true), windowFlags);
+        ImGui.popStyleVar(2);
+
+        //setup DockSpace
+
+        ImGui.dockSpace(ImGui.getID("Dockspace"));
     }
 
     public void destroy() {
@@ -210,5 +252,12 @@ public class Window {
 
     public static void setHeight(int newHeight) {
         get().height = newHeight;
+    }
+
+    public static FrameBuffer getFrameBuffer(){
+        return get().frameBuffer;
+    }
+    public static float getViewPortAspectRatio(){
+        return 16.0f/9.0f;
     }
 }

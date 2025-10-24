@@ -1,5 +1,7 @@
 package org.sid.jade;
 
+import org.joml.Matrix4f;
+import org.joml.Vector2f;
 import org.joml.Vector4f;
 import org.lwjgl.glfw.GLFW;
 
@@ -8,6 +10,9 @@ public class MouseListener {
     private static MouseListener mouseListener;
     private double xPos, yPos, scrollX, scrollY, lastXPos, lastYPos;
     private boolean mouseButtonPressed[] = new boolean[GLFW.GLFW_MOUSE_BUTTON_LAST + 1];
+
+    private Vector2f viewPortSize = new Vector2f();
+    private Vector2f viewPortPos = new Vector2f();
 
     private boolean isDragging;
 
@@ -65,20 +70,28 @@ public class MouseListener {
         return (float) get().yPos;
     }
     public static float getOrthoX() {
-        float currentX = getX();
-        currentX = (currentX / (float)Window.getWidth()) * 2.0f - 1.0f;
+        float currentX = getX() - get().viewPortPos.x;
+        currentX = (currentX / get().viewPortSize.x) * 2.0f - 1.0f;
         Vector4f tmp = new Vector4f(currentX, 0, 0, 1);
-        tmp.mul(Window.getScene().camera().getInverseProjection()).mul(Window.getScene().camera().getInverseView());
+
+        Camera camera = Window.getScene().camera();
+        Matrix4f viewProjection = new Matrix4f();
+        camera.getInverseView().mul(camera.getInverseProjection(), viewProjection);
+        tmp.mul(viewProjection);
         currentX = tmp.x;
 
         return currentX;
     }
 
     public static float getOrthoY() {
-        float currentY = Window.getHeight() - getY();
-        currentY = (currentY / (float)Window.getHeight()) * 2.0f - 1.0f;
+        float currentY = getY() - get().viewPortPos.y;
+        currentY = -((currentY / get().viewPortSize.y) * 2.0f - 1.0f);
         Vector4f tmp = new Vector4f(0, currentY, 0, 1);
-        tmp.mul(Window.getScene().camera().getInverseProjection()).mul(Window.getScene().camera().getInverseView());
+
+        Camera camera = Window.getScene().camera();
+        Matrix4f viewProjection = new Matrix4f();
+        camera.getInverseView().mul(camera.getInverseProjection(), viewProjection);
+        tmp.mul(viewProjection);
         currentY = tmp.y;
 
         return currentY;
@@ -108,4 +121,11 @@ public class MouseListener {
         return get().mouseButtonPressed[button];
     }
 
+    public static void setViewPortSize(Vector2f viewPortSize) {
+        get().viewPortSize.set(viewPortSize);
+    }
+
+    public static void setViewPortPos(Vector2f viewPortPos) {
+        get().viewPortPos.set(viewPortPos);
+    }
 }

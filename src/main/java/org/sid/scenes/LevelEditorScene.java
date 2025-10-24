@@ -5,17 +5,24 @@ import imgui.ImGui;
 import imgui.ImVec2;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
-import org.joml.Vector4f;
 import org.sid.components.*;
 import org.sid.jade.*;
+import org.sid.physics2d.Physics2D;
+import org.sid.physics2d.rigidbody.Rigidbody2D;
 import org.sid.renderer.DebugDraw;
 import org.sid.utils.AssetPool;
 
 public class LevelEditorScene extends Scene {
-    private GameObject obj1;
     private SpriteSheet sprites;
-    SpriteRenderer obj1Sprite;
     GameObject leveLEditor = new GameObject("levelEditor",new Transform(new Vector2f()),0);
+
+    Physics2D physics = new Physics2D(1.0f / 60.0f, new Vector2f(0,-10));
+
+    Transform obj1 ;
+    Transform obj2;
+    Rigidbody2D rigidbody1;
+    Rigidbody2D rigidbody2;
+
 
     public LevelEditorScene() {
 
@@ -23,66 +30,68 @@ public class LevelEditorScene extends Scene {
 
     @Override
     public void init() {
+
+        obj1 = new Transform(new Vector2f(100, 500 ));
+        obj2 = new Transform(new Vector2f(200, 500 ));
+        rigidbody1 = new Rigidbody2D();
+        rigidbody2 = new Rigidbody2D();
+
+        rigidbody1.setRawTransform(obj1);
+        rigidbody2.setRawTransform(obj2);
+
+        rigidbody1.setMass(100);
+        rigidbody2.setMass(2);
+
+        physics.addRigidbody(rigidbody1);
+        physics.addRigidbody(rigidbody2);
+
         leveLEditor.addComponent(new MouseControls());
         leveLEditor.addComponent(new GridLines());
         loadResources();
         this.camera = new Camera(new Vector2f(-250, 0));
         sprites = AssetPool.getSpriteSheet("assets/images/spritesheets/decorationsAndBlocks.png");
-//        DebugDraw.addLine2D(new Vector2f(0,0),new Vector2f(200,200),new Vector3f(1,0,0),90);
-//        DebugDraw.addLine2D(new Vector2f(175,175),new Vector2f(225,175),new Vector3f(1,0,0),120);
-//        DebugDraw.addLine2D(new Vector2f(225,175),new Vector2f(225,225),new Vector3f(1,0,0),120);
-//        DebugDraw.addLine2D(new Vector2f(225,225),new Vector2f(175,225),new Vector3f(1,0,0),120);
-//        DebugDraw.addLine2D(new Vector2f(175,225),new Vector2f(175,175),new Vector3f(1,0,0),120);
-
         if (isLevelLoaded) {
-//            this.activeGameObject = gameObjects.get(0);
-//            this.activeGameObject.addComponent(new Rigidbody());
+            if (!gameObjects.isEmpty()){
+                this.activeGameObject = gameObjects.get(0);
+
+            }
             return;
         }
 
-//
-//
-//        obj1 = new GameObject("Object 1", new Transform(new Vector2f(200, 100),
-//                new Vector2f(256, 256)), 2);
-//        obj1Sprite = new SpriteRenderer();
-//        obj1Sprite.setColor(new Vector4f(1, 0, 0, 1));
-//        obj1.addComponent(obj1Sprite);
-//        obj1.addComponent(new Rigidbody());
-//
-//        this.addGameObjectToScene(obj1);
-//        this.activeGameObject = obj1;
-//
-//        GameObject obj2 = new GameObject("Object 2",
-//                new Transform(new Vector2f(400, 100), new Vector2f(256, 256)), 1);
-//        SpriteRenderer obj2SpriteRenderer = new SpriteRenderer();
-//        Sprite obj2Sprite = new Sprite();
-//        obj2Sprite.setTexture(AssetPool.getTexture("assets/images/blendImage2.png"));
-//        obj2SpriteRenderer.setSprite(obj2Sprite);
-//        obj2.addComponent(obj2SpriteRenderer);
-//        this.addGameObjectToScene(obj2);
     }
 
     private void loadResources() {
 //        AssetPool.getShader("assets/shaders/default.glsl");
 //        AssetPool.getTexture("assets/images/blendImage2.png");
 
-        // TODO: FIX TEXTURE SAVE SYSTEM TO USE PATH INSTEAD OF ID
         AssetPool.addSpriteSheet("assets/images/spritesheets/decorationsAndBlocks.png",
                 new SpriteSheet(AssetPool.getTexture("assets/images/spritesheets/decorationsAndBlocks.png"),
                         16, 16, 81, 0));
+
+        for (GameObject go : gameObjects){
+            if (go.getComponent(SpriteRenderer.class)!= null){
+                SpriteRenderer spriteRenderer = go.getComponent(SpriteRenderer.class);
+                if (spriteRenderer.getTexture()!= null){
+                    spriteRenderer.setTexture(AssetPool.getTexture(spriteRenderer.getTexture().getFilepath()));
+                }
+            }
+        }
     }
 
     @Override
     public void update(float dt) {
 
-        leveLEditor.update(dt);
 
-        DebugDraw.addBox2D(new Vector2f(200,200),new Vector2f(400, 200), 60, new Vector3f(1,0,0), 1);
-        DebugDraw.addCircle2D(new Vector2f(200,200),50,new Vector3f(1,0,0),1);
+        leveLEditor.update(dt);
 
         for (GameObject go : this.gameObjects) {
             go.update(dt);
         }
+//
+//        DebugDraw.addBox2D(rigidbody1.getPosition(), new Vector2f(32, 32), 0.0f, new Vector3f(1,0,0), 1);
+//        DebugDraw.addBox2D(rigidbody2.getPosition(), new Vector2f(32, 32), 0.0f, new Vector3f(0,1,0), 1);
+
+        physics.update(dt);
 
         this.renderer.render();
     }

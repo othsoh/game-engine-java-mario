@@ -4,18 +4,34 @@ import org.lwjgl.BufferUtils;
 
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
+import java.util.Objects;
 
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.stb.STBImage.*;
 
 public class Texture {
     private String filepath;
-    private int texID;
+    private transient int texID;
     private int width, height;
 
-//    public Texture(String filepath) {
-//
-//    }
+
+    public Texture(){
+        this.texID =-1;
+        this.width=-1;
+        this.height=-1;
+    }
+
+    public Texture(int width, int height){
+        this.filepath = "Generated";
+        texID = glGenTextures();
+        glBindTexture(GL_TEXTURE_2D, texID);
+
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height,
+                0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
+    }
 
     public void init(String filepath) {
         this.filepath = filepath;
@@ -76,5 +92,23 @@ public class Texture {
     }
     public int getId(){
         return this.texID;
+    }
+
+    public String getFilepath() {
+        return filepath;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) return false;
+
+        if (obj.getClass() != Texture.class) return false;
+
+        Texture other = (Texture) obj;
+
+        return other.getWidth() == this.width && other.getHeight() == this.height &&
+                other.getId() == this.texID &&
+                other.getFilepath().equals(this.filepath);
+
     }
 }
